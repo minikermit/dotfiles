@@ -1,0 +1,23 @@
+[user]
+name = minikermit
+email = eyesonly202@gmail.com
+
+[alias]
+co = checkout
+  datetag = !git tag `git name-rev --name-only HEAD`-`date \"+%Y%m%d%H%M%S\"` #http://posterous.timocracy.com/tagging-a-git-release-with-current-branch-nam?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+timocracy+%28a+timocracy+of+one%29
+  st = status
+  ci = commit
+  br = branch
+  df = diff
+
+  [apply]
+  whitespace = nowarn
+
+  [color]
+  diff = auto
+  status = auto
+  branch = auto
+
+  [github]
+  user = minikermit
+  token = 9ecb33c426eb02da8bb3c51eb1f61cb6
