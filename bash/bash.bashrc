@@ -40,7 +40,7 @@ if [ ! -e "$HOME/.sudo_as_admin_successful" ]; then
 	cat <<-EOF
 	To run a command as administrator (user "root"), use "sudo <command>".
 	See "man sudo_root" for details.
-	
+
 	EOF
     fi
     esac
@@ -66,7 +66,7 @@ fi
 alias sbash='sudo vim /etc/bash.bashrc'
 
 #bash copy to source repository
-alias bashcopy='sudo cp /etc/bash.bashrc /var/www/dotfiles/bash/bash.bashrc' 
+alias bashcopy='sudo cp /etc/bash.bashrc /var/www/dotfiles/bash/bash.bashrc'
 
 # alias for text editors
 alias rmi='sudo ~/Downloads/RubyMine/bin/rubymine.sh'
@@ -214,7 +214,7 @@ alias cp='cp -i'
 
 
 # Utilities
-alias zipr='zip -9 -r' # usage : zipr directory.zip directory (with maximum compression)
+alias zipr='sudo zip -9 -r' # usage : zipr directory.zip directory (with maximum compression)
 alias un='tar -zvxf'
 alias search='locate -r' # because i never remember this command
 alias compiz='cscm' # compiz manager in case I tweak too much the system and break the graphic layer ;-)
