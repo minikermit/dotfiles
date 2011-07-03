@@ -118,8 +118,15 @@ alias sdb='sudo vim config/database.yml'
 alias sroutes='sudo vim config/routes.rb'
 alias sapperb='sudo vim app/views/layouts/application.html.erb'
 
+alias be='rvmsudo bundle exec'
+alias bi='rvmsudo bundle install'
+alias gemi='rvmsudo gem install --no-rdoc --no-ri'
+alias gemu='rvmsudo gem uninstall'
+
 alias ss='rvmsudo rails s'
 alias pass='rvmsudo passenger start'
+alias ttr='touch tmp/restart' # restart passenger
+
 
 alias dbm='sudo rake db:migrate'
 alias r='rails' # rails 3 shortcut 'r'

@@ -1,1 +1,3 @@
+# source ~/dotfiles/bash/env.sh
+# source ~/dotfiles/bash/alias.sh
 alias ls='ls'
