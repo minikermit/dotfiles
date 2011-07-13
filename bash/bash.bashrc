@@ -75,6 +75,7 @@ alias svim='sudo vim '
 alias snano='sudo nano '
 alias rnano='rvmsudo nano'
 alias vi='vim '
+alias vim-='find . -type f' #search all files under current dir
 
 # alias for moves back in directories
 alias ..='cd ..'
@@ -117,6 +118,7 @@ alias cpic='cd app/assets/images/'
 alias sdb='sudo vim config/database.yml'
 alias sroutes='sudo vim config/routes.rb'
 alias sapperb='sudo vim app/views/layouts/application.html.erb'
+alias sgem='sudo vim Gemfile'
 
 alias be='rvmsudo bundle exec'
 alias bi='rvmsudo bundle install'
@@ -164,6 +166,8 @@ alias rs='rvmsudo rake spec'
 alias cuke='rvmsudo rake cucumber'
 alias feat='cd features '
 alias supp='cd features/support '
+alias bestp='rails_best_practices -f html .'
+alias bests='firefox rails_best_practices_output.html'
 
 # git
 alias gitdm='git diff | mate'
