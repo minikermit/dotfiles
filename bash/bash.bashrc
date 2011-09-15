@@ -67,6 +67,7 @@ alias sbash='sudo vim /etc/bash.bashrc'
 
 #bash copy to source repository
 alias bashcopy='sudo cp /etc/bash.bashrc /var/www/dotfiles/bash/bash.bashrc'
+alias bashcopy2='sudo cp ~/.bash_ps1 /var/www/dotfiles/bash/.bash_ps1'
 
 # alias for text editors
 alias rmi='sudo ~/Downloads/RubyMine/bin/rubymine.sh'
@@ -86,17 +87,19 @@ alias disk="cd /" # move to root of filesystem
 alias s='cd ..' # up one dir # variant of the above .. (shorter by one letter !)
 alias cdd='cd -' # goto last dir cd'ed from
 
-
 # alias for moves in usefull directories
 alias cpub='cd Public'
 alias cdown='cd Downloads'
 alias cdoc='cd Documents'
+alias wmain='firefox file:///home/minikermit/Public/rails31/test/qcm/public/main.html'
 
 # alias for ubuntu updates and install
 alias agi='sudo apt-get install'
 alias agup='sudo apt-get update'
 alias agug='sudo apt-get upgrade'
 alias agud='sudo apt-get dist-upgrade'
+alias agre='sudo apt-get autoremove'
+alias agcl='sudo apt-get clean'
 
 # alias for rvm and gemsets
 alias 19231='rvm use 1.9.2@rails31'
@@ -119,9 +122,19 @@ alias sdb='sudo vim config/database.yml'
 alias sroutes='sudo vim config/routes.rb'
 alias sapperb='sudo vim app/views/layouts/application.html.erb'
 alias sgem='sudo vim Gemfile'
+alias ssho='sudo vim show.html.erb'
+alias sedi='sudo vim edit.html.erb'
+alias sind='sudo vim index.html.erb'
+alias snew='sudo vim new.html.erb'
+
 
 alias be='rvmsudo bundle exec'
 alias bi='rvmsudo bundle install'
+alias ber="rmvsudo bundle exec rspec"
+alias bes="rvmsudo bundle exec spec"
+alias bec="rmvsudo bundle exec cucumber"
+alias ano="rvmsudo bundle exec annotate"
+
 alias gemi='rvmsudo gem install --no-rdoc --no-ri'
 alias gemu='rvmsudo gem uninstall'
 
@@ -129,11 +142,13 @@ alias ss='rvmsudo rails s'
 alias pass='rvmsudo passenger start'
 alias ttr='touch tmp/restart' # restart passenger
 
-
 alias dbm='sudo rake db:migrate'
 alias r='rails' # rails 3 shortcut 'r'
 
 # rails logs, tailing and cleaning
+
+alias log='tail -f -0 ./log/*.log &'
+alias stoplog='killall tail'
 alias tdl='tail -f ./log/development.log'
 alias ttl='tail -f ./log/test.log'
 alias ctl='> ./log/test.log'
@@ -166,8 +181,13 @@ alias rs='rvmsudo rake spec'
 alias cuke='rvmsudo rake cucumber'
 alias feat='cd features '
 alias supp='cd features/support '
+
+# alias for rails best practices (run + show in browser)
 alias bestp='rails_best_practices -f html .'
 alias bests='firefox rails_best_practices_output.html'
+
+# alias for guard (continuous testing)
+alias guar='rvmsudo guard'
 
 # git
 alias gitdm='git diff | mate'
@@ -186,10 +206,12 @@ alias gb='git branch'
 alias gba='git branch -a'
 alias gc='git commit -v'
 alias gca='git commit -v -a'
+
 # Commit pending changes and quote all args as message
 function gg() {
-    git commit -v -a -m "$*"
+  sudo git commit -v -a -m "$*"
 }
+
 alias gco='git checkout'
 alias gd='git diff -u --ignore-all-space | mate'
 alias gdm='git diff -u master'
@@ -205,15 +227,22 @@ alias eg='sudo nano .git/config'
 
 # Git clone from GitHub
 function gch() {
-  git clone git://github.com/$USER/$1.git
+  sudo git clone git://github.com/$USER/$1.git
 }
 
 # MySQL
 #alias start_mysql='sudo mysqld_safe --user=mysql &'
 
+# Postgress
+#alias startpg='sudo /Library/StartupItems/PostgreSQL/PostgreSQL start'
+
+# MongoDB
+#export PATH=/usr/mongodb/bin:$PATH
+
 # GENERAL BASH commands
 alias ls='ls -G -color'
 alias dir='ls -l'
+alias lsa='ls -a -color'
 alias h='history'
 alias dns_flush='dscacheutil -flushcache'
 alias ping='ping -c 10'
@@ -238,13 +267,54 @@ function authme {
    ssh $1 'cat >> .ssh/authorized_keys' < ~/.ssh/id_dsa.pub
  }
 
+function my_ip() # Get IP adresses.
+ {
+  MY_IP=$(/sbin/ifconfig ppp0 | awk '/inet/ { print $2 } ' | \
+    sed -e s/addr://)
+  MY_ISP=$(/sbin/ifconfig ppp0 | awk '/P-t-P/ { print $3 } ' | \
+    sed -e s/P-t-P://)
+ }
+
+function ii() # Get current host related info.
+ {
+  echo -e "\nYou are logged on ${RED}$HOST"
+  echo -e "\nAdditionnal information:$NC " ; uname -a
+  echo -e "\n${RED}Users logged on:$NC " ; w -h
+  echo -e "\n${RED}Current date :$NC " ; date
+  echo -e "\n${RED}Machine stats :$NC " ; uptime
+  echo -e "\n${RED}Memory stats :$NC " ; free
+   my_ip 2>&- ;
+  echo -e "\n${RED}Local IP Address :$NC" ; echo ${MY_IP:-"Not connected"}
+  echo -e "\n${RED}ISP Address :$NC" ; echo ${MY_ISP:-"Not connected"}
+  echo -e "\n${RED}Open connections :$NC "; netstat -pan --inet;
+  echo
+ }
+
+# Alias to local server example
+alias tom=' ssh 192.168.1.0 -l root'
+
+# Alias to remote server example
+alias ANYNAMEHERE=' ssh YOURWEBSITE.com -l USERNAME -p PORTNUMBERHERE'
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
 
 
 
-
-
-
-
-
-
-
+# enable a clean command prompt after each command
+if [ -f "$HOME/.bash_ps1" ]; then
+    . "$HOME/.bash_ps1"
+fi
