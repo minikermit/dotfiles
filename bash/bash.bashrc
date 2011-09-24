@@ -68,6 +68,7 @@ alias sbash='sudo vim /etc/bash.bashrc'
 #bash copy to source repository
 alias bashcopy='sudo cp /etc/bash.bashrc /var/www/dotfiles/bash/bash.bashrc'
 alias bashcopy2='sudo cp ~/.bash_ps1 /var/www/dotfiles/bash/.bash_ps1'
+alias dotfiles='cd /var/www/dotfiles'
 
 # alias for text editors
 alias rmi='sudo ~/Downloads/RubyMine/bin/rubymine.sh'
@@ -134,6 +135,7 @@ alias ber="rmvsudo bundle exec rspec"
 alias bes="rvmsudo bundle exec spec"
 alias bec="rmvsudo bundle exec cucumber"
 alias ano="rvmsudo bundle exec annotate"
+alias precomp="rvmsudo bundle exec rake assets:precompile"
 
 alias gemi='rvmsudo gem install --no-rdoc --no-ri'
 alias gemu='rvmsudo gem uninstall'
@@ -142,7 +144,8 @@ alias ss='rvmsudo rails s'
 alias pass='rvmsudo passenger start'
 alias ttr='touch tmp/restart' # restart passenger
 
-alias dbm='sudo rake db:migrate'
+alias dbm='rvmsudo rake db:migrate'
+alias dbmp='rvmsudo rake db:migrate RAILS_ENV="production"'
 alias r='rails' # rails 3 shortcut 'r'
 
 # rails logs, tailing and cleaning
@@ -197,7 +200,7 @@ alias gitcm='git commit -m'
 alias gitlog='git --no-pager log -n 20 --pretty=format:%h%x09%an%x09%ad%x09%s --date=short --no-merges'
 alias gitb='git branch -v'
 alias gitcd='git add .;gitcm "done"'
-alias gitpush='git push origin master'
+alias gitpush='git push -u origin master'
 
 # Git
 alias ungit="find . -name '.git' -exec rm -rf {} \;"
