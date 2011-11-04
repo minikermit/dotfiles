@@ -78,8 +78,10 @@ alias snano='sudo nano '
 alias rnano='rvmsudo nano'
 alias vi='vim '
 alias vim-='find . -type f' #search all files under current dir
+export EDITOR=vim
+export VISUAL=vim
 
-# alias for moves back in directories
+ #alias for moves back in directories
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
