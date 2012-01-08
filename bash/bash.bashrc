@@ -293,6 +293,10 @@ alias zipr='sudo zip -9 -r' # usage : zipr directory.zip directory (with maximum
 alias un='tar -zvxf'
 alias search='locate -r' # because i never remember this command
 alias compiz='cscm' # compiz manager in case I tweak too much the system and break the graphic layer ;-)
+alias reload='. ~/.bash_profile'
+
+
+
 
 function extract()      # Handy Extract Program.
 {
