@@ -62,6 +62,7 @@ if [ -x /usr/lib/command-not-found -o -x /usr/share/command-not-found ]; then
 	}
 fi
 
+
 # alias for bash file edition
 alias sbash='sudo vim /etc/bash.bashrc'
 
@@ -106,10 +107,12 @@ alias agug='sudo apt-get upgrade'
 alias agud='sudo apt-get dist-upgrade'
 alias agre='sudo apt-get autoremove'
 alias agcl='sudo apt-get clean'
+alias agu='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade'
 
 # alias for rvm and gemsets
 alias 19231='rvm use 1.9.2@rails31'
 alias 1923='rvm use 1.9.2@rails3'
+alias 19332='rvm use 1.9.3@rails32'
 alias gemup='rvmsudo gem update'
 
 # alias for rails apps
@@ -248,9 +251,7 @@ function gch() {
 #export PATH=/usr/mongodb/bin:$PATH
 
 # GENERAL BASH commands
-alias ls='ls -G -color'
-alias dir='ls -l'
-alias lsa='ls -a -color'
+# alias ls='ls -G -color'
 alias h='history'
 alias dns_flush='dscacheutil -flushcache'
 alias ping='ping -c 10'
@@ -259,7 +260,33 @@ alias da=' date "+%Y-%m-%d %A %T %Z"'
 alias trash="rm -fr ~/.Trash" # empty trash
 alias mv='mv -i'
 alias cp='cp -i'
+alias rm='rm -i'
 
+# -> Prevents accidentally clobbering files.
+alias mkdir='mkdir -p'
+alias j='jobs -l'
+alias which='type -a'
+
+#-------------------------------------------------------------
+# The 'ls' family (this assumes you use a recent GNU ls)
+#-------------------------------------------------------------
+alias ll="ls -l --group-directories-first"
+alias dir='ls -l'
+alias lsa='ls -a -color'
+alias ls='ls -hF --color'  # add colors for filetype recognition
+alias la='ls -Al'          # show hidden files
+alias lx='ls -lXB'         # sort by extension
+alias lk='ls -lSr'         # sort by size, biggest last
+alias lc='ls -ltcr'        # sort by and show change time, most recent last
+alias lu='ls -ltur'        # sort by and show access time, most recent last
+alias lt='ls -ltr'         # sort by date, most recent last
+alias lm='ls -al |more'    # pipe through 'more'
+alias lr='ls -lR'          # recursive ls
+alias tree='tree -Csu'     # nice alternative to 'recursive ls'
+
+# If your version of 'ls' doesn't support --group-directories-first try this:
+# function ll(){ ls -l "$@"| egrep "^d" ; ls -lXB "$@" 2>&-| \
+  #                egrep -v "^d|total "; }
 
 # Utilities
 alias zipr='sudo zip -9 -r' # usage : zipr directory.zip directory (with maximum compression)
@@ -267,6 +294,27 @@ alias un='tar -zvxf'
 alias search='locate -r' # because i never remember this command
 alias compiz='cscm' # compiz manager in case I tweak too much the system and break the graphic layer ;-)
 
+function extract()      # Handy Extract Program.
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xvjf $1     ;;
+      *.tar.gz)    tar xvzf $1     ;;
+      *.bz2)       bunzip2 $1      ;;
+      *.rar)       unrar x $1      ;;
+      *.gz)        gunzip $1       ;;
+      *.tar)       tar xvf $1      ;;
+      *.tbz2)      tar xvjf $1     ;;
+      *.tgz)       tar xvzf $1     ;;
+      *.zip)       unzip $1        ;;
+      *.Z)         uncompress $1   ;;
+      *.7z)        7z x $1         ;;
+      *)           echo "'$1' cannot be extracted via >extract<" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
 
 # a nice function to send authorized keys to the server
 # picked up from deploying rails applications ( pragprog.com)
