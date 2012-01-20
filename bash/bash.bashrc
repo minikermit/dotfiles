@@ -303,8 +303,7 @@ alias search='locate -r' # because i never remember this command
 alias compiz='cscm' # compiz manager in case I tweak too much the system and break the graphic layer ;-)
 alias reload='. ~/.bash_profile'
 
-
-
+# Functions
 
 function extract()      # Handy Extract Program.
 {
