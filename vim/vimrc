@@ -239,7 +239,8 @@ let NERDTreeWinsize = 30
 " ================ Function keys shortcuts  ========================
 
 set pastetoggle=<F2>        " kill theses indent when pasting !!!!
-set splitbelow              " split window at the bottom
+set splitbelow              " split new horizontal window below current
+set splitright              " split new vertical windows to the right
 set autoread                " Reload files changed outside vim
 
 nmap <F1> <Esc>             " No Help, please
@@ -363,3 +364,25 @@ nmap <leader>ac :center<CR>
 map <C-t><C-t> :tabnew<CR>
 " close tab
 map <C-t><C-w> :tabclose<CR> 
+
+" ================ NERDCommnenter plugin ====================
+
+let NERDDefaultNesting = 0
+let NERDRemoveExtraSpaces = 1
+let NERDSpacesDelims = 1
+
+" ==================== Ruby plugin ==========================
+
+let ruby_operators = 1
+let g:rails_statusline = 0
+
+
+" ========================= Tags ============================
+
+set tags=./tags;
+
+function! s:RebuildTagsFile()
+  !ctags -R --exclude=coverage --exclude=files --excludes=public --exclude=log --exclude=tmp --exclude=vendor *
+endfunction
+
+
