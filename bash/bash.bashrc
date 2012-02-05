@@ -80,6 +80,7 @@ alias sterm='sudo vim ~/.config/terminator/config'
 #bash copy to source repository
 alias bashcopy='sudo cp /etc/bash.bashrc /var/www/dotfiles/bash/bash.bashrc'
 alias bashcopy2='sudo cp ~/.bash_ps1 /var/www/dotfiles/bash/.bash_ps1'
+alias vimcopy='sudo cp ~/.vim/vimrc /var/www/dotfiles/vim/vimrc'
 alias dotfiles='cd /var/www/dotfiles'
 
 # alias for text editors
@@ -302,6 +303,8 @@ alias un='tar -zvxf'
 alias search='locate -r' # because i never remember this command
 alias compiz='cscm' # compiz manager in case I tweak too much the system and break the graphic layer ;-)
 alias reload='. ~/.bash_profile'
+alias sterm='sudo vim  ~/config/terminator/config'
+
 
 # Functions
 
