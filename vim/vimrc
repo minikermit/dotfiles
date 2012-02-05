@@ -19,6 +19,7 @@ endif
 " ================ General Config ====================
 
 set number                  " Set line numbering
+set numberwidth=5
 set ruler                   " Show the cursor position all the time
 set encoding=utf-8          " Set encoding
 syntax on                   " Turn on syntax highlighting
@@ -226,6 +227,7 @@ set pastetoggle=<F2>        " kill theses indent when pasting !!!!
 set splitbelow              " split window at the bottom
 set autoread                " Reload files changed outside vim
 
+nmap <F1> <Esc>             " No Help, please
 map <F1> <Esc>
 map! <F1> <Esc>
 if has("gui_running")
@@ -275,4 +277,41 @@ function! StripWhitespace ()
 endfunction
 
 map ,s :call StripWhitespace ()<CR>
+
+
+
+" ================ Leader shortcut for Rails commands  ====================
+
+map <Leader>m :Rmodel
+map <Leader>c :Rcontroller
+map <Leader>v :Rview
+map <Leader>u :Runittest
+map <Leader>f :Rfunctionaltest
+map <Leader>tm :RTmodel
+map <Leader>tc :RTcontroller
+map <Leader>tv :RTview
+map <Leader>tu :RTunittest
+map <Leader>tf :RTfunctionaltest
+map <Leader>sm :RSmodel
+map <Leader>sc :RScontroller
+map <Leader>sv :RSview
+map <Leader>su :RSunittest
+map <Leader>sf :RSfunctionaltest 
+
+
+" Opens an edit command with the path of the currently edited file filled in
+" Normal mode: <Leader>e
+map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+
+" Opens a tab edit command with the path of the currently edited file filled
+"  in Normal mode: <Leader>t
+map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
+
+" Inserts the path of the currently edited file into a command
+" Command mode: Ctrl+P
+cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+
+" Duplicate a selection
+" Visual mode: D
+vmap D y'>p
 
