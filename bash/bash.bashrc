@@ -80,6 +80,9 @@ alias sterm='sudo vim ~/.config/terminator/config'
 #bash copy to source repository
 alias bashcopy='sudo cp /etc/bash.bashrc /var/www/dotfiles/bash/bash.bashrc'
 alias bashcopy2='sudo cp ~/.bash_ps1 /var/www/dotfiles/bash/.bash_ps1'
+
+#vim copy to source directory + shortcut
+alias svimrc='sudo vim ~/.vim/vimrc'
 alias vimcopy='sudo cp ~/.vim/vimrc /var/www/dotfiles/vim/vimrc'
 alias dotfiles='cd /var/www/dotfiles'
 
