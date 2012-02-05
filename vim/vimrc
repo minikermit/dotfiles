@@ -1,55 +1,119 @@
+" Use Vim settings, rather then Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
 set nocompatible
 
-set number
-set ruler
-syntax on
+" ============== Pathogen Initialization ===============
+" This loads all the plugins in ~/.vim/bundle
+" Use tpope's pathogen plugin to manage all other plugins
 
+"  runtime bundle/tpope-vim-pathogen/autoload/pathogen.vim
+"  call pathogen#infect()
+"  call pathogen#helptags()
+
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
 " source ~/.vim/vimrc
 
-" Set encoding
-set encoding=utf-8
 
-" Whitespace stuff
-set nowrap
-set tabstop=2
+" ================ General Config ====================
+
+set number                  " Set line numbering
+set ruler                   " Show the cursor position all the time
+set encoding=utf-8          " Set encoding
+syntax on                   " Turn on syntax highlighting
+set showcmd                 " Show (partial) command in status line.
+set showmode                " Show current mode down the bottom
+set ch=2                    " command line height
+
+
+" ================ Indentation ======================
+
+set autoindent
+set smartindent
+set smarttab
 set shiftwidth=2
 set softtabstop=2
+set tabstop=2
 set expandtab
-set list listchars=tab:\ \ ,trail:·
+set nowrap                            " Don't wrap lines
+set linebreak                         " Wrap lines at convenient points
+set list listchars=tab:\ \ ,trail:·   " display tabs and trailing spaces visually
 
-" Searching
-set hlsearch
-set incsearch
-set ignorecase
+filetype plugin on
+filetype indent on
+
+" ================== Search Settings =================
+
+set incsearch                 " Find the next match as we type the search
+set hlsearch                  " Hilight searches by default
+set viminfo='100,f1           " Save up to 100 marks, enable capital marks
+set ignorecase                " Ignore case when searching
 set smartcase
+" set nohlsearch " don't highlight searches
 
-" Tab completion
+set showmatch                 " Show matching brackets/braces
+set mat=5                     " Duration to show matching brace (1/10 sec)
+set visualbell                " Shut the fuck up
+
+
+" ================ Folds ============================
+
+set foldmethod=indent "fold based on indent
+set foldnestmax=3 "deepest fold is 3 levels
+set nofoldenable "dont fold by default
+
+
+
+" ================ Completion =======================
+
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
+set wildmenu                                                       " enable ctrl-n and ctrl-p to scroll thru matches
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,*~ " stuff to ignore when tab completing
+set wildignore+=*vim/backups*
 
-" Status bar
+
+" ================ Scrolling ========================
+
+set scrolloff=8 "Start scrolling when we're 8 lines away from margins
+set sidescrolloff=15
+set sidescroll=1
+
+
+" ================ Status bar ========================
 set laststatus=2
+
+
+" ================ Lead remapping ====================
+
+let mapleader = ","
+
 
 " Without setting this, ZoomWin restores windows in a way that causes
 " equalalways behavior to be triggered the next time CommandT is used.
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
 
+
 " Command-T configuration
 let g:CommandTMaxHeight=20
+
 
 " ZoomWin configuration
 map <Leader><Leader> :ZoomWin<CR>
 
+
 " CTags
 map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
 map <C-\> :tnext<CR>
+
 
 " Remember last location in file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal g'\"" | endif
 endif
+
 
 function s:setupWrapping()
   set wrap
@@ -62,16 +126,19 @@ function s:setupMarkup()
   map <buffer> <Leader>p :Hammer<CR>
 endfunction
 
+
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
+
 
 " md, markdown, and mk are markdown and define buffer-local preview
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 
+
 " add json syntax highlighting
 au BufNewFile,BufRead *.json set ft=javascript
-
 au BufRead,BufNewFile *.txt call s:setupWrapping()
+
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -116,12 +183,14 @@ let g:gist_open_browser_after_post = 1
 set modeline
 set modelines=10
 
-" Default color scheme
+" ================ Default colorscheme ========================
 color desert
 
-" Directories for swp files
+
+" ================ Directories for swp files ========================
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
+
 
 " Turn off jslint errors by default
 let g:JSLintHighlightErrorLine = 0
@@ -132,33 +201,78 @@ let macvim_hig_shift_movement = 1
 " % to bounce from do to end etc.
 runtime! macros/matchit.vim
 
-" Show (partial) command in the status line
-set showcmd
 
-" Include user's local vim config
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
-endif
+" ================ NERDTree configuration ========================
 
 map <F12> :NERDTreeToggle<CR>
 "let g:NERDTreeWinPos = "right"
 "let g:NERDTreeWinSize=33
 
-" enable nice colors
-let NERDChristmasTree = 1
+let NERDChristmasTree = 1               " enable nice colors
+let NERDTreeHighlightCursorline = 1     " Make it easy to see where we are
+let NERDTreeMinimalUI = 0
+let NERDTtreeShowBookmarks = 1          " Make Bookmarks visible
+let NERDTreeShowHidden = 1              " Show hidden files
+let NERDTreeHijackNetrw = 0             " Don't hijack NETRW
+let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', '\.$']
 
-" Make it easy to see where we are
-let NERDTreeHighlightCursorline = 1
+let NERDTreeDirArrows = 1
+let NERDTreeWinsize = 30
 
-" Make Bookmarks visible
-let NERDTtreeShowBookmarks = 1
 
-" Show hidden files
-let NERDTreeShowHidden = 1
+" ================ Function keys shortcuts  ========================
 
-" Don't hijack NETRW
-let NERDTreeHijackNetrw = 0
-let NERDTreeIgnore=['\.$', '\~$']
+set pastetoggle=<F2>        " kill theses indent when pasting !!!!
+set splitbelow              " split window at the bottom
+set autoread                " Reload files changed outside vim
 
-" NERDTree configuration
-let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
+map <F1> <Esc>
+map! <F1> <Esc>
+if has("gui_running")
+  map <F2> :Fancy<CR>
+endif
+map <F3> :cnext<CR>
+map <F4> :cc<CR>
+map <F5> :cprev<CR>
+nmap <silent> <F6> :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR>
+nmap <silent> <F7> :if exists(':Glcd')<Bar>exe 'Glcd'<Bar>elseif exists(':Rlcd')<Bar>exe 'Rlcd'<Bar>else<Bar>lcd %:h<Bar>endif<CR>
+map <F8> :wa<Bar>make<CR>
+map <F9> :Run<CR>
+map <silent> <F10> :let tagsfile = tempname()\|silent exe "!ctags -f ".tagsfile." \"%\""\|let &l:tags .= "," . tagsfile\|unlet tagsfile<CR>
+map <silent> <F11> :if exists(":BufExplorer")<Bar>exe "BufExplorer"<Bar>else<Bar>buffers<Bar>endif<CR>
+map <C-F4> :bdelete<CR>
+
+" exit to normal mode with jj
+inoremap jj <ESC>
+
+nnoremap Y  y$              " yanks until the end of line (lazy remapping!)
+
+
+"  ================ Section: Visual  ========================
+
+" Switch syntax highlighting on, when the terminal has colors
+if (&t_Co > 2 || has("gui_running")) && has("syntax")
+  function! s:initialize_font()
+    if exists("&guifont")
+      if has("mac")
+        set guifont=Monaco:h12
+      elseif has("unix")
+        if &guifont == ""
+          set guifont=bitstream\ vera\ sans\ mono\ 11
+        endif
+      elseif has("win32")
+        set guifont=Consolas:h11,Courier\ New:h10
+      endif
+    endif
+  endfunction
+endif
+
+
+" ================ Strip all trailing whitespace in file  ====================
+
+function! StripWhitespace ()
+  exec ':%s/ \+$//gc'
+endfunction
+
+map ,s :call StripWhitespace ()<CR>
+
