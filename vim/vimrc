@@ -46,6 +46,7 @@ set showcmd                 " Show (partial) command in status line.
 set showmode                " Show current mode down the bottom
 set ch=2                    " command line height
 
+set history=1000            " Remember more commands and search history
 
 " ================ Indentation ======================
 
@@ -200,11 +201,9 @@ set modelines=10
 " ================ Default colorscheme ========================
 color desert
 
-
 " ================ Directories for swp files ========================
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
-
 
 " Turn off jslint errors by default
 let g:JSLintHighlightErrorLine = 0
@@ -214,7 +213,6 @@ let macvim_hig_shift_movement = 1
 
 " % to bounce from do to end etc.
 runtime! macros/matchit.vim
-
 
 " ================ NERDTree configuration ========================
 
@@ -290,8 +288,6 @@ endfunction
 
 map ,s :call StripWhitespace ()<CR>
 
-
-
 " ================ Leader shortcut for Rails commands  ====================
 
 map <Leader>m :Rmodel
@@ -309,7 +305,6 @@ map <Leader>sc :RScontroller
 map <Leader>sv :RSview
 map <Leader>su :RSunittest
 map <Leader>sf :RSfunctionaltest 
-
 
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
@@ -344,36 +339,11 @@ nnoremap j gj
 nnoremap k gk
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 " Easy window navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+map <c-h> <c-w>h
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
 nnoremap <leader>w <C-w>v<C-w>l
 
 " Use ,d (or ,dd or ,dj or 20,dd) to delete a line without adding it to the
