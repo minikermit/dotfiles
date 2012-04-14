@@ -75,7 +75,10 @@ set viminfo='100,f1           " Save up to 100 marks, enable capital marks
 set ignorecase                " Ignore case when searching
 set smartcase
 set visualbell                " Shut the fuck up
+
 nnoremap <leader><space> :noh<cr>         " clear out a search by typing ,space
+map <silent> <leader>qs <Esc>:noh<CR> " Clear last search (,qs)
+" map <silent> <leader>qs <Esc>:let @/ = ""<CR>
 
 
 " ================ Folds ============================
@@ -259,6 +262,10 @@ map <C-F4> :bdelete<CR>
 inoremap jj <ESC>           " exit to normal mode with jj
 nnoremap Y  y$              " yanks until the end of line (lazy remapping!)
 
+" indent/unident block (,]) (,[)
+nnoremap <leader>] >i{<CR>
+nnoremap <leader>[ <i{<CR>
+
 
 "  ================ Section: Visual  ========================
 
@@ -387,4 +394,17 @@ function! s:RebuildTagsFile()
   !ctags -R --exclude=coverage --exclude=files --excludes=public --exclude=log --exclude=tmp --exclude=vendor *
 endfunction
 
+" ========================== Faster split resizing (+,-)=====
 
+if bufwinnr(1)
+    map + <C-W>+
+    map - <C-W>-
+endif
+
+" ========================= smart utilities =================
+"
+" Sudo write (,W)
+noremap <leader>W :w !sudo tee %<CR>
+
+" Remap :W to :w
+command W w
