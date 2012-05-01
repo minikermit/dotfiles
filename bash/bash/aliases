@@ -9,42 +9,19 @@ platform=`uname`
     alias a='ls -lrthG'
   fi
 
-alias bi='bundle install'
-alias be='bundle exec'
-alias bu='bundle update'
-
-alias gad='git add .'
-alias gc='git commit'
-alias gca='git commit -a'
-alias gcaa='git commit -a --amend -C HEAD'
-alias gcl='git clone'
-alias gcm='git commit -m'
-alias gco='git checkout'
-alias gd='git diff'
-alias gdc='git diff --cached'
-alias get='sudo apt-get install'
-alias gg='git lg'
-alias gpush='git push'
-alias gpsuh='git push'
-alias gpr='git pull --rebase'
-alias grc='git rebase --continue'
 alias grake='rspec --drb spec/ && cucumber --drb features/
 
+
+# alias for ruby
 alias irb='irb --readline -r irb/completion'
 alias killruby='killall -9 ruby'
-
-alias retag='ctags -R --exclude=.svn --exclude=.git --exclude=log *'
 
 alias rerake='!! && rake'
 alias restart_apache="sudo /etc/init.d/apache2 restart"
 alias retag='ctags -R --exclude=.svn --exclude=.git --exclude=log *'
-alias repush="gpr && gpush"
-alias rc='rails console'
 alias remigrate='rake db:migrate && rake db:migrate:redo && rake db:schema:dump && rake db:test:prepare'
 alias rdm="be rake db:migrate"
 alias rdtp="be rake db:test:prepare"
-alias rs='bundle install && rails server -p 3001'
-alias safepush='git pull --rebase && bundle install && rdm && rake && git push'
 
 # alias for bash file edition
 alias sbash='sudo vim /etc/bash.bashrc'
@@ -150,24 +127,48 @@ alias ctl='> ./log/test.log'
 alias cdl='> ./log/development.log'
 alias tl='tail -f log/*.log'
 
-# alias for git
+# GIT
+alias gad='git add .'
+alias gap='git add -p'
 alias gb='git branch'
+alias gba='git branch -a'
+alias gitb='git branch -v'
+alias gcl='git clone'
 alias gc='git commit -v'
 alias gca='git commit -a -v'
+alias gcaa='git commit -a --amend -C HEAD'
 alias gco='git checkout'
-alias gd='git diff'
+alias gd='git diff -u --ignore-all-space'
 alias gdc='git diff --cached'
 alias gdh='git diff HEAD'
+alias gdm='git diff -u master'
+alias gnp="git-notpushed"
 alias gp='git push'
+alias gitpush='git push -u origin master'
 alias gl='git pull'
 alias gpr='git pull --rebase'
+alias grc='git rebase --continue'
 alias gst='git status'
-alias gap='git add -p'
 alias glg='git log --pretty=oneline --abbrev-commit'
+alias gitlog='git --no-pager log -n 20 --pretty=format:%h%x09%an%x09%ad%x09%s --date=short --no-merges'
+alias ungit="find . -name '.git' -exec rm -rf {} \;"
+alias gk='gitk --all &'
+alias gx='gitx --all'
+alias eg='sudo vim .git/config'
 
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
 source ~/.git-completion.sh
+
+# Git clone from GitHub
+   function gch() {
+     sudo git clone git://github.com/$USER/$1.git
+     }
+
+# Commit pending changes and quote all args as message
+function gg() {
+   sudo git commit -v -a -m "$*"
+   }
 
 # alias for rspec
 alias rs='rvmsudo rake spec'
@@ -177,53 +178,12 @@ alias cuke='rvmsudo rake cucumber'
 alias feat='cd features '
 alias supp='cd features/support '
 
-# alias for rails best practices (run + show in browser)
-alias bestp='rails_best_practices -f html .'
-alias bests='firefox rails_best_practices_output.html'
-
 # alias for guard (continuous testing)
 alias guar='rvmsudo guard'
 
-# git
-alias gitdm='git diff | mate'
-alias gitdm2='git diff --cached | mate'
-alias gits='git status'
-alias gitcm='git commit -m'
-alias gitlog='git --no-pager log -n 20 --pretty=format:%h%x09%an%x09%ad%x09%s --date=short --no-merges'
-alias gitb='git branch -v'
-alias gitcd='git add .;gitcm "done"'
-alias gitpush='git push -u origin master'
-
-# Git
-alias ungit="find . -name '.git' -exec rm -rf {} \;"
-alias ga='git add'
-alias gb='git branch'
-alias gba='git branch -a'
-alias gc='git commit -v'
-alias gca='git commit -v -a'
-
-# Commit pending changes and quote all args as message
-function gg() {
-   sudo git commit -v -a -m "$*"
-   }
-
-alias gco='git checkout'
-alias gd='git diff -u --ignore-all-space | mate'
-alias gdm='git diff -u master'
-alias gl='git pull'
-alias gnp="git-notpushed"
-alias gp='git push'
-alias gst='git status'
-alias gt='git status'
-alias g='git status'
-alias gk='gitk --all &'
-alias gx='gitx --all'
-alias eg='sudo nano .git/config'
-
-# Git clone from GitHub
-   function gch() {
-     sudo git clone git://github.com/$USER/$1.git
-     }
+# alias for rails best practices (run + show in browser)
+alias bestp='rails_best_practices -f html .'
+alias bests='firefox rails_best_practices_output.html'
 
 # Mysql
 alias start_mysql='sudo mysqld_safe --user=mysql &'
@@ -235,7 +195,6 @@ alias startpg='sudo /Library/StartupItems/PostgreSQL/PostgreSQL start'
 export PATH=/usr/mongodb/bin:$PATH
 
 # GENERAL BASH commands
-# alias ls='ls -G -color'
 alias h='history'
 alias dns_flush='dscacheutil -flushcache'
 alias ping='ping -c 10'
