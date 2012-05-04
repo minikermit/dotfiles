@@ -186,13 +186,13 @@ alias bestp='rails_best_practices -f html .'
 alias bests='firefox rails_best_practices_output.html'
 
 # Mysql
-alias start_mysql='sudo mysqld_safe --user=mysql &'
+# alias start_mysql='sudo mysqld_safe --user=mysql &'
 
 # Postgress
-alias startpg='sudo /Library/StartupItems/PostgreSQL/PostgreSQL start'
+# alias startpg='sudo /Library/StartupItems/PostgreSQL/PostgreSQL start'
 
 # MongoDB
-export PATH=/usr/mongodb/bin:$PATH
+# export PATH=/usr/mongodb/bin:$PATH
 
 # GENERAL BASH commands
 alias h='history'
@@ -204,6 +204,7 @@ alias trash="rm -fr ~/.Trash" # empty trash
 alias mv='mv -i'
 alias cp='cp -i'
 alias rm='rm -i'
+alias q='exit'
 
 # -> Prevents accidentally clobbering files.
 alias mkdir='mkdir -p'
