@@ -126,6 +126,7 @@ alias ttl='tail -f ./log/test.log'
 alias ctl='> ./log/test.log'
 alias cdl='> ./log/development.log'
 alias tl='tail -f log/*.log'
+alias tlf='tail -f'
 
 # GIT
 alias gad='git add .'
@@ -213,6 +214,9 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias rm='rm -i'
 alias q='exit'
+alias :q='exit'
+alias :wq='exit'
+alias grep='grep --color=auto'
 
 # -> Prevents accidentally clobbering files.
 alias mkdir='mkdir -p'
@@ -253,4 +257,5 @@ alias tom=' ssh 192.168.1.0 -l root'
 
 # Alias to remote server example
 alias ANYNAMEHERE=' ssh YOURWEBSITE.com -l USERNAME -p PORTNUMBERHERE'
+
 
