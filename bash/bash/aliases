@@ -196,6 +196,11 @@ alias bests='firefox rails_best_practices_output.html'
 
 #Redis
 alias redis-start='redis-server /usr/local/etc/redis.conf'
+alias redit-stop='killall redis-server'
+
+#Nginx
+alias nginx-start='sudo nginx -c /usr/local/etc/nginx/nginx.conf'
+alias nginx-stop='sudo nginx -s stop'
 
 # GENERAL BASH commands
 alias h='history'
