@@ -52,8 +52,8 @@ function ii() # Get current host related info.
   echo
  }
 
-#Create and change into a new directory
-function take() {
+function take() #Create and change into a new directory
+ {
     mkdir -p "$*"
     cd "$*"
  }
