@@ -24,7 +24,16 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # set a fancy prompt (non-color, overwrite the one in /etc/profile)
-PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+# PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+
+#################
+# prompt stuff #
+#################
+YELLOW="\[\033[0;33m\]"
+export PS1="=================================================================================================================================================\n\[\033[01;32m\]\u@\h\[\033[01;34m\] \w$YELLOW \$(parse_git_branch) \$\[\033[00m\] "
+
+
+
 
 # Commented out, don't overwrite xterm -T "title" -n "icontitle" by default.
 # If this is an xterm set the title to user@host:dir
@@ -122,8 +131,6 @@ alias agcl='sudo apt-get clean'
 alias agu='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade'
 
 # alias for rvm and gemsets
-alias 19231='rvm use 1.9.2@rails31'
-alias 1923='rvm use 1.9.2@rails3'
 alias 19332='rvm use 1.9.3@rails32'
 alias gemup='rvmsudo gem update'
 
@@ -259,8 +266,13 @@ function gch() {
 # Postgress
 #alias startpg='sudo /Library/StartupItems/PostgreSQL/PostgreSQL start'
 
+
 # MongoDB
 #export PATH=/usr/mongodb/bin:$PATH
+
+#Redis
+alias redis-start='redis-server /usr/local/etc/redis.conf'
+
 
 # GENERAL BASH commands
 # alias ls='ls -G -color'
@@ -363,6 +375,13 @@ function ii() # Get current host related info.
   echo
  }
 
+#Create and change into a new directory
+function take() {
+    mkdir -p "$*"
+    cd "$*"
+  }
+
+
 # Alias to local server example
 alias tom=' ssh 192.168.1.0 -l root'
 
@@ -384,8 +403,6 @@ fi
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
-
-
 
 # enable a clean command prompt after each command
 if [ -f "$HOME/.bash_ps1" ]; then
