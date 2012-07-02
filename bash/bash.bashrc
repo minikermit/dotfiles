@@ -146,6 +146,9 @@ alias csheets='cd app/assets/stylesheets/'
 alias cjava='cd app/assets/javascripts/'
 alias cpic='cd app/assets/images/'
 
+alias brake='brakeman -o report.html'
+
+
 alias sdb='sudo vim config/database.yml'
 alias sroutes='sudo vim config/routes.rb'
 alias sapperb='sudo vim app/views/layouts/application.html.erb'
