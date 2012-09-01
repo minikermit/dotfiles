@@ -119,7 +119,6 @@ alias cdd='cd -' # goto last dir cd'ed from
 alias cpub='cd Public'
 alias cdown='cd Downloads'
 alias cdoc='cd Documents'
-alias wmain='firefox file:///home/minikermit/Public/rails31/test/qcm/public/main.html'
 
 # alias for ubuntu updates and install
 alias agi='sudo apt-get install'
@@ -131,11 +130,12 @@ alias agcl='sudo apt-get clean'
 alias agu='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade'
 
 # alias for rvm and gemsets
-alias 19332='rvm use 1.9.3@rails32'
+alias 19332='rvm use 1.9.3-p194@rails32'
 alias gemup='rvmsudo gem update'
 
 # alias for rails apps
 alias current='cd ~/Public/rails31/test/qcm'
+alias wmain='firefox file:///home/minikermit/Public/rails31/test/qcm/public/main.html'
 alias cview='cd app/views/'
 alias ccont='cd app/controllers/'
 alias cmodel='cd app/models/'
@@ -148,7 +148,6 @@ alias cpic='cd app/assets/images/'
 
 alias brake='brakeman -o report.html'
 
-
 alias sdb='sudo vim config/database.yml'
 alias sroutes='sudo vim config/routes.rb'
 alias sapperb='sudo vim app/views/layouts/application.html.erb'
@@ -157,7 +156,6 @@ alias ssho='sudo vim show.html.erb'
 alias sedi='sudo vim edit.html.erb'
 alias sind='sudo vim index.html.erb'
 alias snew='sudo vim new.html.erb'
-
 
 alias be='rvmsudo bundle exec'
 alias bi='rvmsudo bundle install'
@@ -189,6 +187,7 @@ alias cdl='> ./log/development.log'
 alias tl='tail -f log/*.log'
 
 # alias for git
+
 alias gb='git branch'
 alias gc='git commit -v'
 alias gca='git commit -a -v'
@@ -269,13 +268,11 @@ function gch() {
 # Postgress
 #alias startpg='sudo /Library/StartupItems/PostgreSQL/PostgreSQL start'
 
-
 # MongoDB
 #export PATH=/usr/mongodb/bin:$PATH
 
 #Redis
 alias redis-start='redis-server /usr/local/etc/redis.conf'
-
 
 # GENERAL BASH commands
 # alias ls='ls -G -color'
